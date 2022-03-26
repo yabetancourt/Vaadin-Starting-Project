@@ -9,11 +9,14 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.tutorial.crm.backend.Person;
 import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.elements.Footer;
 
+import java.util.ArrayList;
+
 @Route(value = "", layout = MainLayout.class)
-@PageTitle("Students | UCLV")
+@PageTitle("Postgraduate Students | UCLV")
 public class ListView extends VerticalLayout {
 
     ContactGrid grid = new ContactGrid();
@@ -33,7 +36,7 @@ public class ListView extends VerticalLayout {
         content = new Div(grid.getGrid());
         content.addClassName("content");
         content.setSizeFull();
-        contactForm = new ContactForm(content, horizontalLayout);
+        contactForm = new ContactForm(content, horizontalLayout, grid);
         contactForm.getStyle().set("display", "none");
         add(horizontalLayout, content);
         add(contactForm);

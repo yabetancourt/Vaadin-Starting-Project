@@ -3,6 +3,7 @@ package com.vaadin.tutorial.crm.ui;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -10,18 +11,21 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.tutorial.crm.ui.elements.Footer;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.tutorial.crm.ui.view.list.ListView;
 
+@Theme(value = Lumo.class, variant = Lumo.DARK)
+//@HtmlImport("frontend/themes/lumo-theme.html")
 @CssImport("./styles/shared-styles.css")
-public class MainLayout extends AppLayout {
-
+public class MainLayout extends AppLayout{
     public MainLayout() {
         createHeader();
         createDrawer();
     }
 
     private void createHeader() {
+
         H1 logo = new H1("Postgraduate UCLV");
         logo.addClassName("logo");
         Anchor a = new Anchor("http://localhost:8080/", "Log out");
