@@ -4,10 +4,10 @@ public class Person {
     private String name, firstName,lastName, id, email, grade;
     public Person(){
         firstName = "Yadier";
-        lastName = "Betancourt";
+        lastName = "Betancourt Martinez";
         name = firstName  + " " + lastName;
         id = "01080172624";
-        email = "algo@gmail.com";
+        email = "yadierbetanc@gmail.com";
         grade = "Doctor";
     }
 
@@ -16,7 +16,7 @@ public class Person {
         this.lastName = lastName;
         this.id = id;
         this.email = email;
-        name = firstName +""+ lastName;
+        name = firstName +" "+ lastName;
         this.grade = grade;
     }
 

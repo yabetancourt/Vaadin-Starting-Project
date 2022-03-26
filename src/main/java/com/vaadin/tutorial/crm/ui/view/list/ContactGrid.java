@@ -1,4 +1,4 @@
-package com.vaadin.tutorial.crm.ui;
+package com.vaadin.tutorial.crm.ui.view.list;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.data.renderer.NativeButtonRenderer;
@@ -16,7 +16,7 @@ public class ContactGrid{
 
     public ContactGrid(){
         grid.addClassName("contact-grid");
-        grid.setHeight("65%");
+        grid.setMinHeight("70%");
         List<Person> people = new ArrayList<>();
         for (int i = 0; i < 100; i ++)
             people.add(new Person());

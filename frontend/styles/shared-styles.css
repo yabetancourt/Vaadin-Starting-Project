@@ -18,8 +18,12 @@ body{
 }
 
 .list-view .contact-grid{
+    margin-bottom: 50px;
 }
-
+.footer{
+    position: absolute;
+    bottom: 0;
+}
 .list-view .contact-form{
     padding: var(--lumo-space-m);
 }
@@ -29,4 +33,15 @@ body{
     .list-view .contact-grid {
 
     }
+}
+
+a[highlight] {
+//font-weight: bold;
+}
+.header {
+//padding: 0 var(--lumo-space-m);
+}
+.header h1.logo {
+font-size: 1em;
+margin: var(--lumo-space-m);
 }
