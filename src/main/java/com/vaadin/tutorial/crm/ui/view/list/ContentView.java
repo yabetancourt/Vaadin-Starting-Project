@@ -1,7 +1,6 @@
 package com.vaadin.tutorial.crm.ui.view.list;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -9,26 +8,23 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.tutorial.crm.backend.Person;
 import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.elements.Footer;
 
-import java.util.ArrayList;
-
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Postgraduate Students | UCLV")
-public class ListView extends VerticalLayout {
-
+public class ContentView extends VerticalLayout {
+    //Attributes
     ContactGrid grid = new ContactGrid();
     TextField filter = new TextField();
     Button addStudent = new Button("Add Student");
     HorizontalLayout horizontalLayout;
     Div content;
     ContactForm contactForm;
-    public ListView() {
+
+    public ContentView() {
         addClassName("list-view");
         setSizeFull();
-
         configureFilter();
         configureAddStudent();
         horizontalLayout = new HorizontalLayout(filter, addStudent);
@@ -41,7 +37,6 @@ public class ListView extends VerticalLayout {
         add(horizontalLayout, content);
         add(contactForm);
         Footer footer = new Footer();
-
         add(footer);
     }
 
