@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.tutorial.crm.ui.view.dashboard.DashboardView;
@@ -17,6 +18,14 @@ import com.vaadin.tutorial.crm.ui.view.list.ContentView;
 
 @Theme(value = Lumo.class, variant = Lumo.DARK)
 @CssImport("./styles/shared-styles.css")
+@PWA(name = "Postgraduate UCLV",
+        shortName = "PostUCLV",
+        offlineResources = {
+            "./styles/offline.css",
+            "./images/offline.png",
+            "./offline.html"
+        }
+)
 public class MainLayout extends AppLayout{
 
     public MainLayout() {
@@ -27,7 +36,7 @@ public class MainLayout extends AppLayout{
     private void createHeader() {
         H1 logo = new H1("Postgraduate UCLV");
         logo.addClassName("logo");
-        Anchor a = new Anchor("login", "Log out");
+        Anchor a = new Anchor("", "Log out");
         a.getStyle().set("padding", "15px");
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, a);
         header.expand(logo);

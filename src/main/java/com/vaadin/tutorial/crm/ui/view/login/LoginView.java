@@ -8,8 +8,9 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorial.crm.ui.MainLayout;
+//import com.vaadin.tutorial.crm.ui.MainLayout;
 
-@Route(value = "login",layout = MainLayout.class)
+@Route(value = "")
 @PageTitle("Login | UCLV")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 

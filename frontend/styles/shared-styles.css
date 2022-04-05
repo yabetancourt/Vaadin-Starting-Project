@@ -4,34 +4,36 @@
   max-width: 250px;
 }
 
-.list-view .content{
+.list-view{
     display: flex;
 }
 
-.list-view .contact-grid{
+.contact-grid{
     margin-bottom: 100px;
+    min-height: 80%;
 }
+
 .footer{
     position: relative;
 }
-.list-view .contact-form{
+
+.contact-form{
     padding: var(--lumo-space-m);
-    margin-bottom: 100px;
 }
 
-@media all and (max-width: 1100px){
-    .list-view .toolbar,
-    .list-view .contact-grid {
-
-    }
+.dashboard-view .contact-stats {
+font-size: 4em;
+margin: 1em 0;
 }
 
 a[highlight] {
 //font-weight: bold;
 }
+
 .header {
 //padding: 0 var(--lumo-space-m);
 }
+
 .header h1.logo {
 font-size: 1em;
 margin: var(--lumo-space-m);
@@ -40,6 +42,7 @@ margin: var(--lumo-space-m);
 html{
     --lumo-font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans";
 }
+
 [theme~="dark"]{
   --lumo-shade-5pct: rgba(7, 6, 15, 0.05);
   --lumo-shade-10pct: rgba(7, 6, 15, 0.1);

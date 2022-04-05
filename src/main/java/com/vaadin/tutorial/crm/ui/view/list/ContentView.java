@@ -1,58 +1,72 @@
 package com.vaadin.tutorial.crm.ui.view.list;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.tutorial.crm.backend.entity.Student;
+import com.vaadin.tutorial.crm.backend.service.StudentService;
+import com.vaadin.tutorial.crm.backend.service.UniversityService;
 import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.elements.Footer;
 
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "list", layout = MainLayout.class)
 @PageTitle("Postgraduate Students | UCLV")
 public class ContentView extends VerticalLayout {
-    //Attributes
-    ContactGrid grid = new ContactGrid();
-    TextField filter = new TextField();
-    Button addStudent = new Button("Add Student");
-    HorizontalLayout horizontalLayout;
-    Div content;
-    ContactForm contactForm;
-
-    public ContentView() {
+    private StudentService contactService;
+    private UniversityService universityService;
+    private Grid<Student> grid = new Grid<>(Student.class);
+    private TextField filter = new TextField();
+    private Footer footer = new Footer();
+    public ContentView(StudentService contactService, UniversityService universityService) {
+        this.contactService = contactService;
+        this.universityService = universityService;
         addClassName("list-view");
         setSizeFull();
-        configureFilter();
-        configureAddStudent();
-        horizontalLayout = new HorizontalLayout(filter, addStudent);
-        horizontalLayout.setWidth("50%");
-        content = new Div(grid.getGrid());
-        content.addClassName("content");
-        content.setSizeFull();
-        contactForm = new ContactForm(content, horizontalLayout, grid);
-        contactForm.getStyle().set("display", "none");
-        add(horizontalLayout, content);
-        add(contactForm);
-        Footer footer = new Footer();
-        add(footer);
+        configureGrid();
+        add(getToolbar(), grid, footer);
+        updateList();
     }
 
-    private void configureAddStudent(){
-        addStudent.addClickListener(click -> {
-            content.getStyle().set("display", "none");
-            horizontalLayout.getStyle().set("display", "none");
-            contactForm.getStyle().set("display", "flex");
-        });
-    }
-
-    private void configureFilter(){
+    private Component getToolbar() {
         filter.setPlaceholder("Filter by name...");
-        filter.setWidth("50%");
         filter.setClearButtonVisible(true);
         filter.setValueChangeMode(ValueChangeMode.LAZY);
+        filter.addValueChangeListener(e -> updateList());
+        Button add_student = new Button("Add Student");
+        add_student.addClickListener(click -> {
+            grid.asSingleSelect().clear();
+            editStudent(new Student());
+        });
+        HorizontalLayout toolbar = new HorizontalLayout(filter, add_student);
+        toolbar.addClassName("toolbar");
+        return toolbar;
+    }
+
+
+    private void configureGrid() {
+        grid.addClassName("contact-grid");
+        grid.setColumns("firstName", "lastName", "email");
+        grid.addColumn(student -> student.getUniversity().getName()).setHeader("University");
+        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        grid.asSingleSelect().addValueChangeListener(e -> editStudent(e.getValue()));
+    }
+
+    private void editStudent(Student value) {
+        if (value != null){
+            UI.getCurrent().navigate("form");
+            ContactForm.setStudent(value);
+        }else ContactForm.setStudent(new Student());
+    }
+
+    private void updateList() {
+        grid.setItems(contactService.findAllStudents(filter.getValue()));
     }
 
 }
