@@ -6,6 +6,7 @@ import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
@@ -27,52 +28,77 @@ public class Footer extends VerticalLayout{
         VerticalLayout studiesLayout = new VerticalLayout();
 
         H5 studies = new H5("Studies");
+        Icon stud = new Icon(VaadinIcon.INSTITUTION);
+        stud.setSize("1.0em");
+        HorizontalLayout horizontalLayout = new HorizontalLayout(studies, stud);
+        horizontalLayout.setAlignItems(Alignment.BASELINE);
         Anchor undergraduate = new Anchor("", "Undergraduate");
         Anchor research = new Anchor("", "Research Centers");
         Anchor graduate = new Anchor("", "Graduate");
         Anchor projects = new Anchor("", "Projects");
         Anchor project = new Anchor("", "Projects");
         H5 follow = new H5("Follow us");
-        Icon face = new Icon(VaadinIcon.FACEBOOK);
-        face.setColor("#3b5998");
-        face.addClickListener(click -> {
-
-        });
-        Icon google = new Icon(VaadinIcon.GOOGLE_PLUS);
-        google.setColor("#ea4335");
-        Icon twitter = new Icon(VaadinIcon.TWITTER);
-        twitter.setColor("#55acee");
-        Icon telegram = new Icon(VaadinIcon.PAPERPLANE);
-        telegram.setColor("#0088cc");
+        Icon fol = new Icon(VaadinIcon.SHARE);
+        fol.setSize("1.0em");
+        HorizontalLayout layoutFollow = new HorizontalLayout(follow, fol);
+        layoutFollow.setAlignItems(Alignment.BASELINE);
+        Icon iconFace = new Icon(VaadinIcon.FACEBOOK);
+        iconFace.setColor("#3b5998");
+        Anchor face = new Anchor("https://www.facebook.com", iconFace);
+        Icon iconGoogle = new Icon(VaadinIcon.GOOGLE_PLUS);
+        iconGoogle.setColor("#ea4335");
+        Anchor google = new Anchor("https://www.facebook.com", iconGoogle);
+        Icon iconTwitter = new Icon(VaadinIcon.TWITTER);
+        iconTwitter.setColor("#55acee");
+        Anchor twitter = new Anchor("https://www.facebook.com", iconTwitter);
+        Icon iconTelegram = new Icon(VaadinIcon.PAPERPLANE);
+        iconTelegram.setColor("#0088cc");
+        Anchor telegram = new Anchor("https://www.facebook.com", iconTelegram);
         HorizontalLayout net = new HorizontalLayout(face, google, twitter, telegram);
-        studiesLayout.add(studies, undergraduate, research, graduate, projects, project, follow, net);
+        net.setAlignItems(Alignment.BASELINE);
+        studiesLayout.add(horizontalLayout, undergraduate, research, graduate, projects, project, layoutFollow, net);
         mainLayout.add(studiesLayout);
 
         //Second Column
         VerticalLayout links = new VerticalLayout();
         H5 linksInter = new H5("Links of Interest");
+        Icon linkIcon = new Icon(VaadinIcon.LINK);
+        linkIcon.setSize("1.0em");
+        horizontalLayout = new HorizontalLayout(linksInter, linkIcon);
+        horizontalLayout.setAlignItems(Alignment.BASELINE);
         Anchor ministry = new Anchor("", "Ministry of Higher Education");
-//        Anchor ecu = new Anchor("", "Ecured");
         Anchor institute = new Anchor("", "Institute");
         Anchor portal = new Anchor("", "Portal");
         Anchor red = new Anchor("", "Science net");
         H5 email = new H5("Email");
+        Icon em = new Icon(VaadinIcon.ENVELOPE_O);
+        em.setSize("1.0em");
+        HorizontalLayout layout = new HorizontalLayout(email, em);
+        layout.setAlignItems(Alignment.BASELINE);
         Anchor contactEmail = new Anchor("","contacto@uclv.edu.cu");
-        links.add(linksInter, ministry, institute, portal, red, email, contactEmail);
+        links.add(horizontalLayout, ministry, institute, portal, red, layout, contactEmail);
         mainLayout.add(links);
 
         //Third Column
         VerticalLayout contactLayout = new VerticalLayout();
         H5 contact = new H5("Contact");
+        Icon iconCont = new Icon(VaadinIcon.PHONE);
+        iconCont.setSize("1.0em");
+        HorizontalLayout lay = new HorizontalLayout(contact, iconCont);
+        lay.setAlignItems(Alignment.BASELINE);
         Anchor address = new Anchor("", "Address");
         Span textAddress = new Span("Highway to Camajuani km. 5 and 1/2. Santa Clara. Villa Clara. Cuba");
-        contactLayout.add(contact, address, textAddress);
+        contactLayout.add(lay, address, textAddress);
 
         H5 phones = new H5("Phones");
+        Icon add = new Icon(VaadinIcon.PHONE_LANDLINE);
+        add.setSize("1.0em");
+        layout = new HorizontalLayout(phones, add);
+        layout.setAlignItems(Alignment.BASELINE);
         Span rect = new Span("Rectorship");
         Anchor phone = new Anchor("", "(53)42281178");
         HorizontalLayout temp = new HorizontalLayout(phone, rect);
-        contactLayout.add(phones, temp);
+        contactLayout.add(layout, temp);
 
         rect = new Span("Rectorship");
         phone = new Anchor("", "(53)42281178");

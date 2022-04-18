@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-public class University extends AbstractEntity{
+public class University extends AbstractEntity implements Comparable{
 
     private String name;
     @OneToMany(mappedBy = "university", fetch = FetchType.EAGER)
@@ -35,4 +35,9 @@ public class University extends AbstractEntity{
         this.students = students;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        University other = (University) o;
+        return this.getName().compareTo(other.getName());
+    }
 }

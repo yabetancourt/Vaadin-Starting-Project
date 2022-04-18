@@ -1,5 +1,7 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
+import com.vaadin.flow.component.avatar.Avatar;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

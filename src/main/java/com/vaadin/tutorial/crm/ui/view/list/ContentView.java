@@ -12,24 +12,22 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.tutorial.crm.backend.entity.Student;
 import com.vaadin.tutorial.crm.backend.service.StudentService;
-import com.vaadin.tutorial.crm.backend.service.UniversityService;
 import com.vaadin.tutorial.crm.ui.MainLayout;
 import com.vaadin.tutorial.crm.ui.elements.Footer;
 
 @Route(value = "list", layout = MainLayout.class)
 @PageTitle("Postgraduate Students | UCLV")
 public class ContentView extends VerticalLayout {
-    private StudentService contactService;
-    private UniversityService universityService;
-    private Grid<Student> grid = new Grid<>(Student.class);
-    private TextField filter = new TextField();
-    private Footer footer = new Footer();
-    public ContentView(StudentService contactService, UniversityService universityService) {
+    private final StudentService contactService;
+    private final Grid<Student> grid = new Grid<>(Student.class);
+    private final TextField filter = new TextField();
+
+    public ContentView(StudentService contactService) {
         this.contactService = contactService;
-        this.universityService = universityService;
         addClassName("list-view");
         setSizeFull();
         configureGrid();
+        Footer footer = new Footer();
         add(getToolbar(), grid, footer);
         updateList();
     }
@@ -53,7 +51,7 @@ public class ContentView extends VerticalLayout {
     private void configureGrid() {
         grid.addClassName("contact-grid");
         grid.setColumns("firstName", "lastName", "email");
-        grid.addColumn(student -> student.getUniversity().getName()).setHeader("University");
+        grid.addColumn(student -> student.getUniversity().getName()).setHeader("University").setSortable(true);
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
         grid.asSingleSelect().addValueChangeListener(e -> editStudent(e.getValue()));
     }

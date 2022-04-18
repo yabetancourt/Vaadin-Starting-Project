@@ -8,6 +8,7 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
@@ -39,6 +40,18 @@ public class StudentService {
             }
             return studentRepository.findByFirstNameContainingOrLastNameContainingAllIgnoreCase(first, last);
         }
+    }
+
+    public List<Student> findByUni(String universityName){
+        University university = new University(universityName);
+        List<Student> list = studentRepository.findAll();
+        List<Student> ans = new ArrayList<>();
+        for(Student st : list){
+            if (st.getUniversity().compareTo(university) == 0){
+                ans.add(st);
+            }
+        }
+        return ans;
     }
 
     public List<Student> findAll() {
