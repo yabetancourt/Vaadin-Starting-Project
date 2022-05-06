@@ -1,22 +1,75 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import java.util.LinkedList;
-import java.util.List;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class University extends AbstractEntity implements Comparable{
+public class University {
+
+    //Attributes
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    private String acronym;
 
     private String name;
-    @OneToMany(mappedBy = "university", fetch = FetchType.EAGER)
-    private List<Student> students = new LinkedList<>();
-    public University() {
-        name = "";
+
+    //Constructors
+    public University(String name, String acronym){
+        this.name = name;
+        this.acronym = acronym;
     }
-    public University(String name) {
-        setName(name);
+
+    public University(){
+        name = "";
+        acronym = "";
+    }
+
+    //Methods
+    public boolean isPersisted() {
+        return id != null;
+    }
+
+    @Override
+    public int hashCode() {
+        if (getId() != null) {
+            return getId().hashCode();
+        }
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        University other = (University) obj;
+        if (getId() == null || other.getId() == null) {
+            return false;
+        }
+        return getId().equals(other.getId());
+    }
+
+    //getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public String getAcronym() {
+        return acronym;
+    }
+
+    public void setAcronym(String acronym) {
+        this.acronym = acronym;
     }
 
     public String getName() {
@@ -27,17 +80,4 @@ public class University extends AbstractEntity implements Comparable{
         this.name = name;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        University other = (University) o;
-        return this.getName().compareTo(other.getName());
-    }
 }

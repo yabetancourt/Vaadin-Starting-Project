@@ -8,6 +8,8 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import java.util.stream.Collectors;
+
 @Route(value = "login")
 @PageTitle("Login | UCLV")
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
@@ -20,7 +22,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
         login.setAction("login");
-        add(new H1("Postgraduate UCLV"), login);
+        add(new H1("Postgrado UCLV"), login);
     }
 
     @Override

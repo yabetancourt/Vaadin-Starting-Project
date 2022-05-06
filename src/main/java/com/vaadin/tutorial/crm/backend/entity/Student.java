@@ -1,67 +1,33 @@
 package com.vaadin.tutorial.crm.backend.entity;
 
-import com.vaadin.flow.component.avatar.Avatar;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "students")
-public class Student extends AbstractEntity implements Cloneable{
+@Table(name = "student")
+public class Student extends Person{
 
-    @NotNull
-    @NotEmpty
-    private String firstName = "";
+    //Attributes
+    private String occupation;
 
-    @NotNull
-    @NotEmpty
-    private String lastName = "";
+    private String work_phone;
 
-    @NotNull
-    @NotEmpty
-    @Email
-    private String email = "";
 
-    @ManyToOne
-    @JoinColumn(name = "university_id")
-    private University university = new University("");
+    //getters and setters
 
-    public String getFirstName() {
-        return firstName;
+    public String getOccupation() {
+        return occupation;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getWork_phone() {
+        return work_phone;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setWork_phone(String work_phone) {
+        this.work_phone = work_phone;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return firstName + " " + lastName;
-    }
-
-    public University getUniversity() {
-        return university;
-    }
-
-    public void setUniversity(University university) {
-        this.university = university;
-    }
 }

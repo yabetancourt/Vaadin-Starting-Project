@@ -17,7 +17,6 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
-import com.vaadin.tutorial.crm.ui.view.dashboard.DashboardView;
 import com.vaadin.tutorial.crm.ui.view.list.ContentView;
 
 @PreserveOnRefresh
@@ -64,23 +63,11 @@ public class MainLayout extends AppLayout{
         Icon iconList = new Icon(VaadinIcon.LIST);
         iconList.setSize("1.0em");
         iconList.setColor("rgb(124, 42, 239)");
-        RouterLink listLink = new RouterLink("List", ContentView.class);
+        RouterLink listLink = new RouterLink("Personas", ContentView.class);
         HorizontalLayout listLayout = new HorizontalLayout(iconList, listLink);
         listLayout.setAlignItems(FlexComponent.Alignment.CENTER);
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
-        Icon iconDash = new Icon(VaadinIcon.CHART);
-        iconDash.setSize("1.0em");
-        iconDash.setColor("rgb(124, 42, 239)");
-        RouterLink profileLink = new RouterLink("Dashboard", DashboardView.class);
-        HorizontalLayout dashLayout = new HorizontalLayout(iconDash, profileLink);
-        dashLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        Anchor tabsLink = new Anchor("tabs", "Tabs");
-        Icon iconTabs = new Icon(VaadinIcon.CHART);
-        iconTabs.setSize("1.0em");
-        iconTabs.setColor("rgb(124, 42, 239)");
-        HorizontalLayout tabsLayout = new HorizontalLayout(iconTabs, tabsLink);
-        tabsLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        VerticalLayout layout = new VerticalLayout(listLayout, dashLayout, tabsLayout);
+        VerticalLayout layout = new VerticalLayout(listLayout);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         addToDrawer(layout);
     }
